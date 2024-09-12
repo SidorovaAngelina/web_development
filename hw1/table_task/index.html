@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Таблица Пифагора</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    tr:nth-child(1) td {
+      border-bottom: 1.5px solid rgb(188, 9, 237);
+    }
+    td:nth-child(1) {
+      border-right: 1.5px solid rgb(188, 9, 237);
+    }
+    .diagonal {
+      background-color: #ff99db;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Таблица Пифагора</h1>
+  <table id="multiplicationTable"></table>
+
+  <script>
+    var n = 10; // size
+
+    function generateMultiplicationTable() {
+      var table = document.getElementById("multiplicationTable");
+      var output = "";
+
+      output += "<tr><td></td>";
+      for (var j = 1; j <= n; j++) {
+        output += "<td>" + j + "</td>";
+      }
+      output += "</tr>";
+
+      for (var i = 1; i <= n; i++) {
+        output += "<tr>";
+        output += "<td>" + i + "</td>"; 
+        for (var j = 1; j <= n; j++) {
+          if (i == j) {
+            output += "<td class='diagonal'>" + i * j + "</td>";
+          } else {
+            output += "<td>" + i * j + "</td>";
+          }
+        }
+        output += "</tr>";
+      }
+
+      table.innerHTML = output;
+    }
+
+    generateMultiplicationTable();
+  </script>
+</body>
+</html>
