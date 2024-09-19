@@ -20,30 +20,64 @@
     .diagonal {
       background-color: #ff99db;
     }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    .input-container input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+    }
+    .input-container button[type="button"] {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+    }
+    .input-container button[type="button"]:hover {
+      background-color: #3e8e41;
+    }
   </style>
 </head>
 
 <body>
   <h1>Таблица Пифагора</h1>
+  <div class="input-container">
+    <input id="nInput" type="number" placeholder="Размер таблицы">
+    <button id="generateButton">Сгенерировать таблицу</button>
+  </div>
   <table id="multiplicationTable"></table>
 
   <script>
-    var n = 10; // size
+    const nInput = document.getElementById('nInput');
+    const generateButton = document.getElementById('generateButton');
+    const table = document.getElementById('multiplicationTable');
 
-    function generateMultiplicationTable() {
-      var table = document.getElementById("multiplicationTable");
-      var output = "";
+    generateButton.addEventListener('click', () => {
+      const n = parseInt(nInput.value);
+      if (n > 0) {
+        generateMultiplicationTable(n);
+      } else {
+        alert('Введите положительное число');
+      }
+    });
+
+    function generateMultiplicationTable(n) {
+      let output = "";
 
       output += "<tr><td></td>";
-      for (var j = 1; j <= n; j++) {
+      for (let j = 1; j <= n; j++) {
         output += "<td>" + j + "</td>";
       }
       output += "</tr>";
 
-      for (var i = 1; i <= n; i++) {
+      for (let i = 1; i <= n; i++) {
         output += "<tr>";
         output += "<td>" + i + "</td>"; 
-        for (var j = 1; j <= n; j++) {
+        for (let j = 1; j <= n; j++) {
           if (i == j) {
             output += "<td class='diagonal'>" + i * j + "</td>";
           } else {
@@ -55,8 +89,6 @@
 
       table.innerHTML = output;
     }
-
-    generateMultiplicationTable();
   </script>
 </body>
 </html>
